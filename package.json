@@ -2,17 +2,17 @@
   "name": "electron-umi-template",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "index.js",
   "scripts": {
     "elt:dev": "cross-env NODE_ENV=development electron .",
     "start": "concurrently \"npm run start:app\" \"wait-on http://localhost:8000 && npm run elt:dev\"",
-    "elt:build": "umi electron-builder -p never",
+    "elt:dist": "umi electron-builder -p never",
     "start:app": "cross-env APP_ROOT=./app umi dev",
     "build:app": "cross-env APP_ROOT=./app umi build",
-    "elt:build-all": "cross-env ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ electron-builder -mwl --config ./config/electron-builder-config.js",
-    "elt:build-mac": "cross-env ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ electron-builder -m --config ./config/electron-builder-config.js",
-    "elt:build-win": "cross-env ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ electron-builder -w --config ./config/electron-builder-config.js",
-    "elt:build-linux": "cross-env ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ electron-builder -l --config ./config/electron-builder-config.js"
+    "elt:dist-all": "cross-env ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ electron-builder -mwl --config ./config/electron-builder-config.js",
+    "elt:dist-mac": "cross-env ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ electron-builder -m --config ./electron-builder-config.js",
+    "elt:dist-win": "cross-env ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ electron-builder -w --config ./config/electron-builder-config.js",
+    "elt:dist-linux": "cross-env ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ electron-builder -l --config ./config/electron-builder-config.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,13 @@
     "cross-env": "^7.0.3",
     "electron": "16.0.8",
     "electron-builder": "^22.14.13",
+    "prettier": "^2.5.1",
     "umi": "^3.5.21"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }

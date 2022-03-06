@@ -1,4 +1,21 @@
-node_modules
+
+# dependencies
+/node_modules
+/npm-debug.log*
+/yarn-error.log
+/yarn.lock
+/package-lock.json
+
+# production
+/dist
+
+# misc
+.DS_Store
+
+release
+
+# about app
 app/node_modules
 app/src/.umi
 app/src/.umi-production
+app/build

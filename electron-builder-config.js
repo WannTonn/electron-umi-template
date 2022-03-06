@@ -6,22 +6,12 @@
 
 module.exports = {
   files: [
-    /* 'main.js',
-    'dist/',
-    'main/',
-    'node_modules/',
-    'package.json', */
-    "**/*",
-    "!release/**/*",
-    "!dist/**/*",
-    "app/**/*",
-    "package.json",
-    "index.js",
-  ], // 需要打包的文件
+    'index.js', 'main/**/*', 'dist/**/*', 'node_modules/', 'package.json'
+  ],
   productName: 'demoApp',
   // 注入打包后package.json 内的属性
   extraMetadata: {
-    main: '../index.js'
+    main: './index.js'
   },
   directories: {
     output: 'release' // 编译文件输出文件夹
