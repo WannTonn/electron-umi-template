@@ -1,0 +1,41 @@
+{
+  "name": "electron-app-template",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "umi dev",
+    "build": "umi build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WannTonn/electron-umi-template.git"
+  },
+  "author": "WannTonn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WannTonn/electron-umi-template/issues"
+  },
+  "homepage": "https://github.com/WannTonn/electron-umi-template#readme",
+  "dependencies": {
+    "@ant-design/pro-layout": "^6.5.0",
+    "@umijs/plugin-sass": "^1.1.1",
+    "axios": "^0.25.0",
+    "react": "17.x",
+    "react-dom": "17.x",
+    "umi": "^3.5.21"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@umijs/preset-react": "1.x",
+    "@umijs/test": "^3.5.8",
+    "cross-env": "^7.0.3",
+    "file-loader": "^6.2.0",
+    "lint-staged": "^10.0.7",
+    "node-sass": "^7.0.1",
+    "prettier": "^2.2.0",
+    "sass-loader": "^12.4.0",
+    "typescript": "^4.1.2",
+    "yorkie": "^2.0.0"
+  }
+}

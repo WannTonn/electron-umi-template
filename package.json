@@ -1,0 +1,33 @@
+{
+  "name": "electron-umi-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "elt:dev": "cross-env NODE_ENV=development electron .",
+    "start": "concurrently \"npm run start:app\" \"wait-on http://localhost:8000 && npm run elt:dev\"",
+    "elt:build": "umi electron-builder -p never",
+    "start:app": "cross-env APP_ROOT=./app umi dev",
+    "build:app": "cross-env APP_ROOT=./app umi build",
+    "elt:build-all": "cross-env ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ electron-builder -mwl --config ./config/electron-builder-config.js",
+    "elt:build-mac": "cross-env ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ electron-builder -m --config ./config/electron-builder-config.js",
+    "elt:build-win": "cross-env ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ electron-builder -w --config ./config/electron-builder-config.js",
+    "elt:build-linux": "cross-env ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ electron-builder -l --config ./config/electron-builder-config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WannTonn/electron-umi-template.git"
+  },
+  "author": "WannTonn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WannTonn/electron-umi-template/issues"
+  },
+  "homepage": "https://github.com/WannTonn/electron-umi-template#readme",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "electron": "16.0.8",
+    "electron-builder": "^22.14.13",
+    "umi": "^3.5.21"
+  }
+}
