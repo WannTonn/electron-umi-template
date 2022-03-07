@@ -4,17 +4,24 @@
  * eg(当前)： elctron-builder --config .config/electron-build-config.js
   */
 
-module.exports = {
+ module.exports = {
   files: [
-    'index.js', 'main/**/*', 'dist/**/*', 'node_modules/', 'package.json'
+    // 'index.js', 'main/**/*', 'dist/**/*', 'node_modules/', 'package.json',
+    "**/*",
+    "!release/**/*",
+    "!renderer/**/*",
+    "dist/**/*",
+    "static/**/*",
+    "!src/**/*",
+    // "!main/**/*"
   ],
   productName: 'demoApp',
   // 注入打包后package.json 内的属性
   extraMetadata: {
-    main: './index.js'
+    main: 'index.js'
   },
   directories: {
-    output: 'release' // 编译文件输出文件夹
+    output: 'release/${version}' // 编译文件输出文件夹
   },
   // mac打包配置
   mac: {
@@ -44,20 +51,20 @@ module.exports = {
     icon: 'public/icon.ico', // 客户端图标
   },
   nsis: {
+    shortcutName: 'demoApp', // 图标名称
     oneClick: false, // 是否一键安装
     allowElevation: true,// 允许请求提升。 如果为false，则用户必须使用提升的权限重新启动安装程序。
     allowToChangeInstallationDirectory: true, // 允许修改安装目录
-    // installerIcon: "./build/icon.ico",// 安装图标
-    // uninstallerIcon: "./build/icons/bbb.ico",//卸载图标
-    // installerHeaderIcon: "./build/icon.ico", // 安装时头部图标
+    // installerIcon: "./dist/public/icon.ico",// 安装图标
+    // uninstallerIcon: "./dist/public/unist.ico",//卸载图标
+    // installerHeaderIcon: "./dist/public/icon.ico", // 安装时头部图标
     createDesktopShortcut: true, // 创建桌面图标
     createStartMenuShortcut: true,// 创建开始菜单图标
-    shortcutName: 'demoApp', // 图标名称
   },
   // asar: {
   //   smartUnpack: true,  // asar打包, 智能提取第三方模块
   // },
-  asar: false,
+  // asar: false,
   /* 
   publish: [
     {

@@ -3,6 +3,7 @@ const path = require('path');
 const isMac = process.platform === 'darwin'; // 如果是MacOS
 const isWin = process.platform === 'win32'; // 如果是Windows
 const isDev = process.env.NODE_ENV === 'development';
+const getRootPath = require('../rootPath');
 let windowIdMap = {};
 /**
  * @description 初始化创建窗口
@@ -17,14 +18,14 @@ function createWindow(name, option) {
       contextIsolation: true,
       webviewTag: true,
       enableRemoteModule: true,
-      preload: path.join(__dirname + '/config', 'electron-preload.js'),
+      preload: path.join(getRootPath(), 'static', 'electron-preload.js'),
     }
   });
   windowIdMap[name] = mainWindow.webContents.id; // 将窗口名称设置到map
   if (isDev) {
     mainWindow.loadURL('http://localhost:8000');
   } else {
-    mainWindow.loadFile(path.join(__dirname, './build/index.html'));
+    mainWindow.loadFile(path.join(getRootPath(), '/dist/index.html'));
   }
   mainWindow.webContents.openDevTools();
 }
