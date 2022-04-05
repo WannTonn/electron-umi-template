@@ -16,9 +16,9 @@ export default defineConfig({
   base: '/',
   publicPath: './',
   outputPath: '../dist',
-  // 打包成Electron专用模式
+  // 打包成Electron专用模式,热编译的时候会报错
   chainWebpack: (memo) => {
-    memo.target('electron-renderer');
+    // memo.target('electron-renderer');
   },
   alias: {
     '@': resolvePath('src')

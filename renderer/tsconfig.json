@@ -11,15 +11,14 @@
     "baseUrl": ".",
     "strict": true,
     "paths": {
-      "@/*": ["src/*"],
+      "@/*": ["/renderer/src/*"],
     },
     "allowSyntheticDefaultImports": true
   },
   "include": [
     "mock/**/*",
-    "src/**/*",
-    "config/**/*",
-    "app/.umirc.ts",
+    "renderer/src/**/*",
+    "renderer/.umirc.ts",
     "typings.d.ts"
   ],
   "exclude": [
