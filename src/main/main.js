@@ -1,9 +1,12 @@
 const { app, BrowserWindow, ipcMain, nativeTheme, Menu, MenuItem, Notification, globalShortcut, webContents, ipcRenderer } = require('electron');
+// const {Log}  = require('common-log-api').default;
+const Log = require('common-api');
+const axios = require('axios');
 const path = require('path');
 const isMac = process.platform === 'darwin'; // 如果是MacOS
 const isWin = process.platform === 'win32'; // 如果是Windows
 const isDev = process.env.NODE_ENV === 'development';
-const getRootPath = require('../rootPath');
+const getRootPath = require('../../rootPath');
 let windowIdMap = {};
 /**
  * @description 初始化创建窗口
@@ -93,8 +96,28 @@ app.whenReady().then(async () => {
     webContents.fromId(windowIdMap['default'])?.openDevTools();
   })
   createWindow('default');
-}).then(() => {
+}).then(async () => {
   isMac && showNotification();
+  /* const res = await commonApi.Log({
+    requestParams: {
+      appSecuret: 'kDCcxy3BVAeNQP05',
+      appKey: 'appstore',
+      requestUrl: 'https://test-appstore-logs-collect.hubstudio.cn/',
+    },
+    formParams: {
+      contentss: 'asdsssasds'
+    }
+  }) */
+
+  const res = await Log();
+  /* const res = await axios.post('https://test-appstore-logs-collect.hubstudio.cn/', {content: 'asdasdasads'}, {
+    headers: {
+      'Content-Type': 'application/json',
+      'simple-auth': 'appstore:kDCcxy3BVAeNQP05'
+    }
+  }); */
+  console.log(res.code);
+  console.log(res.data);
 })
 /**
  * @description 当没有窗口打开时，则打开一个新窗口（MacOS）

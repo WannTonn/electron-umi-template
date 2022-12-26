@@ -1,6 +1,6 @@
 
 # dependencies
-/node_modules
+node_modules
 /npm-debug.log*
 /yarn-error.log
 
@@ -16,3 +16,4 @@ renderer/node_modules
 renderer/src/.umi
 renderer/src/.umi-production
 renderer/build
+src/renderer/src/.umi*
