@@ -1,13 +1,18 @@
 const { app, BrowserWindow, ipcMain, nativeTheme, Menu, MenuItem, Notification, globalShortcut, webContents, ipcRenderer } = require('electron');
-// const {Log}  = require('common-log-api').default;
-const Log = require('common-api');
-const axios = require('axios');
+// const Api = require('common-log-api');
+
+// const Log = require('rollup-test');
+// const axios = require('axios');
 const path = require('path');
 const isMac = process.platform === 'darwin'; // 如果是MacOS
 const isWin = process.platform === 'win32'; // 如果是Windows
 const isDev = process.env.NODE_ENV === 'development';
 const getRootPath = require('../../rootPath');
 let windowIdMap = {};
+// import Api from 'common-log-api';
+const {GZipKafkaLog} = require('common-log-api');
+
+// const Api = require('common-log-api');
 /**
  * @description 初始化创建窗口
  * @param name 窗口的名称
@@ -98,7 +103,9 @@ app.whenReady().then(async () => {
   createWindow('default');
 }).then(async () => {
   isMac && showNotification();
-  /* const res = await commonApi.Log({
+  // console.log(Api);
+  // console.log(CommonApi);
+  /* const res = await Log({
     requestParams: {
       appSecuret: 'kDCcxy3BVAeNQP05',
       appKey: 'appstore',
@@ -107,17 +114,49 @@ app.whenReady().then(async () => {
     formParams: {
       contentss: 'asdsssasds'
     }
-  }) */
+  });
 
-  const res = await Log();
-  /* const res = await axios.post('https://test-appstore-logs-collect.hubstudio.cn/', {content: 'asdasdasads'}, {
-    headers: {
-      'Content-Type': 'application/json',
-      'simple-auth': 'appstore:kDCcxy3BVAeNQP05'
+  console.log('config', res.config);
+  console.log('data',res.data); */
+
+/*   const commonRes = await CommonLog({
+    requestParams: {
+      appSecuret: 'kDCcxy3BVAeNQP05',
+      appKey: 'appstore',
+      requestUrl: 'https://test-appstore-logs-collect.hubstudio.cn/'
+    }, formParams: {
+      contentss: 'asdsssasds'
     }
-  }); */
-  console.log(res.code);
-  console.log(res.data);
+  });
+  console.log('config', commonRes.config);
+  console.log('res.data', commonRes.data); */
+ /*  const kafkaRes = await KafkaLog({
+    requestParams: {
+      appSecuret: 'kDCcxy3BVAeNQP05',
+      appKey: 'appstore',
+      requestUrl: 'https://test-appstore-logs-collect.hubstudio.cn/'
+    },
+    formParams: {
+      addHeader: '0',
+      topic: 'ababsbad',
+      contents: 'adasasd'
+    }
+  })
+  console.log('config', kafkaRes.config);
+  console.log('data',kafkaRes.data); */
+  const gizpkafkaRes =  await GZipKafkaLog({
+    requestParams: {
+      appSecuret: 'kDCcxy3BVAeNQP05',
+      appKey: 'appstore',
+      requestUrl: 'https://test-appstore-logs-collect.hubstudio.cn/'
+    },
+    formParams: {
+      topic: 'ababsbad',
+      content: 'asdaosisuoisuoaiusoiu'
+    }
+  });
+  console.log('headers', gizpkafkaRes.config);
+  console.log('data',gizpkafkaRes.data);
 })
 /**
  * @description 当没有窗口打开时，则打开一个新窗口（MacOS）
