@@ -31,7 +31,6 @@
     "electron": "16.0.8",
     "electron-builder": "^23.3.3",
     "prettier": "^2.5.1",
-    "umi": "^3.5.21",
     "wait-on": "^6.0.1"
   },
   "lint-staged": {
@@ -41,7 +40,7 @@
     ]
   },
   "dependencies": {
-    "common-log-api": "^0.0.1",
-    "example-typescript-package": "^0.2.2"
+    "common-log-api": "^0.2.0",
+    "umi": "^4.0.41"
   }
 }

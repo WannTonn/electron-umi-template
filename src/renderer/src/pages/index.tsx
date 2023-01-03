@@ -1,21 +1,47 @@
-import React, { useEffect } from "react";
-import commonApi from 'common-log-api';
-export default function IndexPage() {
+import { useEffect } from 'react';
+import yayJpg from '../assets/yay.jpg';
+import { Log } from 'common-log-api';
+import { Num } from 'example-typescript-package';
+export default function HomePage() {
   useEffect(() => {
-    commonApi.Log({
-      requestParams: {
-        appSecuret: 'kDCcxy3BVAeNQP05',
-        appKey: 'appstore',
-        requestUrl: 'https://test-appstore-logs-collect.hubstudio.cn/',
-      },
-      formParams: {
-        contentss: 'asdsssasds'
-      }
-    })
+    (async () => {
+      //  console.log(CommonApi);
+      console.log(Log);
+      const number = new Num(1);
+
+      console.log(number.val());
+
+      const res = await Log({
+        requestParams: {
+          appSecuret: 'kDCcxy3BVAeNQP05',
+          appKey: 'appstore',
+          requestUrl: 'https://test-appstore-logs-collect.hubstudio.cn/',
+        },
+      });
+      console.log(res);
+
+      /*  const res = await Log.apicommonjs.Log({
+        requestParams: {
+          appSecuret: 'kDCcxy3BVAeNQP05',
+          appKey: 'appstore',
+          requestUrl: 'https://test-appstore-logs-collect.hubstudio.cn/',
+        },
+        formParams: {
+          contentss: 'asdsssasds',
+        },
+      });
+      console.log(res); */
+    })();
   }, []);
   return (
     <div>
-      <h1>Page index</h1>
+      <h2>Yay! Welcome to umi!</h2>
+      <p>
+        <img src={yayJpg} width="388" />
+      </p>
+      <p>
+        To get started, edit <code>pages/index.tsx</code> and save to reload.
+      </p>
     </div>
   );
 }

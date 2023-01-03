@@ -10,7 +10,8 @@ const isDev = process.env.NODE_ENV === 'development';
 const getRootPath = require('../../rootPath');
 let windowIdMap = {};
 // import Api from 'common-log-api';
-const {GZipKafkaLog} = require('common-log-api');
+const { GZipKafkaLog } = require('common-log-api');
+// import {GZipKafkaLog} from 'common-log-api';
 
 // const Api = require('common-log-api');
 /**
@@ -119,32 +120,32 @@ app.whenReady().then(async () => {
   console.log('config', res.config);
   console.log('data',res.data); */
 
-/*   const commonRes = await CommonLog({
-    requestParams: {
-      appSecuret: 'kDCcxy3BVAeNQP05',
-      appKey: 'appstore',
-      requestUrl: 'https://test-appstore-logs-collect.hubstudio.cn/'
-    }, formParams: {
-      contentss: 'asdsssasds'
-    }
-  });
-  console.log('config', commonRes.config);
-  console.log('res.data', commonRes.data); */
- /*  const kafkaRes = await KafkaLog({
-    requestParams: {
-      appSecuret: 'kDCcxy3BVAeNQP05',
-      appKey: 'appstore',
-      requestUrl: 'https://test-appstore-logs-collect.hubstudio.cn/'
-    },
-    formParams: {
-      addHeader: '0',
-      topic: 'ababsbad',
-      contents: 'adasasd'
-    }
-  })
-  console.log('config', kafkaRes.config);
-  console.log('data',kafkaRes.data); */
-  const gizpkafkaRes =  await GZipKafkaLog({
+  /*   const commonRes = await CommonLog({
+      requestParams: {
+        appSecuret: 'kDCcxy3BVAeNQP05',
+        appKey: 'appstore',
+        requestUrl: 'https://test-appstore-logs-collect.hubstudio.cn/'
+      }, formParams: {
+        contentss: 'asdsssasds'
+      }
+    });
+    console.log('config', commonRes.config);
+    console.log('res.data', commonRes.data); */
+  /*  const kafkaRes = await KafkaLog({
+     requestParams: {
+       appSecuret: 'kDCcxy3BVAeNQP05',
+       appKey: 'appstore',
+       requestUrl: 'https://test-appstore-logs-collect.hubstudio.cn/'
+     },
+     formParams: {
+       addHeader: '0',
+       topic: 'ababsbad',
+       contents: 'adasasd'
+     }
+   })
+   console.log('config', kafkaRes.config);
+   console.log('data',kafkaRes.data); */
+  const gizpkafkaRes = await GZipKafkaLog({
     requestParams: {
       appSecuret: 'kDCcxy3BVAeNQP05',
       appKey: 'appstore',
@@ -156,7 +157,7 @@ app.whenReady().then(async () => {
     }
   });
   console.log('headers', gizpkafkaRes.config);
-  console.log('data',gizpkafkaRes.data);
+  console.log('data', gizpkafkaRes.data);
 })
 /**
  * @description 当没有窗口打开时，则打开一个新窗口（MacOS）
