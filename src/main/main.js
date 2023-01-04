@@ -1,6 +1,5 @@
 const { app, BrowserWindow, ipcMain, nativeTheme, Menu, MenuItem, Notification, globalShortcut, webContents, ipcRenderer } = require('electron');
-// const {Log}  = require('common-log-api').default;
-const Log = require('common-api');
+const {GZipKafkaLog}  = require('common-log-api');
 const axios = require('axios');
 const path = require('path');
 const isMac = process.platform === 'darwin'; // 如果是MacOS
@@ -98,24 +97,19 @@ app.whenReady().then(async () => {
   createWindow('default');
 }).then(async () => {
   isMac && showNotification();
-  /* const res = await commonApi.Log({
+  const res = await GZipKafkaLog({
     requestParams: {
       appSecuret: 'kDCcxy3BVAeNQP05',
       appKey: 'appstore',
-      requestUrl: 'https://test-appstore-logs-collect.hubstudio.cn/',
+      requestUrl: 'http://10.100.73.148:8061/test/processLog'
     },
     formParams: {
-      contentss: 'asdsssasds'
+      topic: 'ababsbad',
+      content: 'asdaosisuoisuoaiusoiu'
     }
-  }) */
+  })
 
-  const res = await Log();
-  /* const res = await axios.post('https://test-appstore-logs-collect.hubstudio.cn/', {content: 'asdasdasads'}, {
-    headers: {
-      'Content-Type': 'application/json',
-      'simple-auth': 'appstore:kDCcxy3BVAeNQP05'
-    }
-  }); */
+  
   console.log(res.code);
   console.log(res.data);
 })
