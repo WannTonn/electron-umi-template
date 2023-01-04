@@ -5,14 +5,14 @@
   "main": "index.js",
   "scripts": {
     "elt:dev": "cross-env NODE_ENV=development electron .",
-    "start:renderer": "cross-env APP_ROOT=./src/renderer umi dev",
+    "start:r": "cross-env APP_ROOT=./src/renderer umi dev",
     "start": "concurrently \"npm run start:renderer\" \"wait-on http://localhost:8000 && npm run elt:dev\"",
     "elt:dist": "umi electron-builder -p never",
     "build:renderer": "cross-env APP_ROOT=./src/renderer umi build",
-    "elt:dist:all": "cross-env ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ electron-builder -mwl --config ./electron-builder-config.js",
-    "elt:dist:mac": "cross-env ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ electron-builder -m --config ./electron-builder-config.js",
-    "elt:dist:win": "cross-env ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ electron-builder -w --config ./electron-builder-config.js",
-    "elt:dist:linux": "cross-env ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ electron-builder -l --config ./electron-builder-config.js"
+    "elt:dist:all": "cross-env ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/ electron-builder -mwl --config ./electron-builder-config.js",
+    "elt:dist:mac": "cross-env ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/ electron-builder -m --config ./electron-builder-config.js",
+    "elt:dist:win": "cross-env ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/ electron-builder -w --config ./electron-builder-config.js",
+    "elt:dist:linux": "cross-env ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/ electron-builder -l --config ./electron-builder-config.js"
   },
   "repository": {
     "type": "git",
@@ -31,7 +31,6 @@
     "electron": "16.0.8",
     "electron-builder": "^23.3.3",
     "prettier": "^2.5.1",
-    "umi": "^3.5.21",
     "wait-on": "^6.0.1"
   },
   "lint-staged": {
@@ -41,6 +40,7 @@
     ]
   },
   "dependencies": {
-    "common-log-api": "^0.2.0"
+    "common-log-api": "^0.2.0",
+    "umi": "^4.0.41"
   }
 }

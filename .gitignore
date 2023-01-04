@@ -12,8 +12,4 @@ node_modules
 .DS_Store
 
 # about renderer
-renderer/node_modules
-renderer/src/.umi
-renderer/src/.umi-production
-renderer/build
 src/renderer/src/.umi*
