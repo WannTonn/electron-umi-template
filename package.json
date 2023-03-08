@@ -30,6 +30,7 @@
     "cross-env": "^7.0.3",
     "electron": "16.0.8",
     "electron-builder": "^23.3.3",
+    "ffi-napi": "^4.0.3",
     "prettier": "^2.5.1",
     "wait-on": "^6.0.1"
   },
@@ -40,7 +41,6 @@
     ]
   },
   "dependencies": {
-    "common-log-api": "^0.2.0",
     "umi": "^4.0.41"
   }
 }
