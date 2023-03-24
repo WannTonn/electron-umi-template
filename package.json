@@ -40,7 +40,6 @@
     ]
   },
   "dependencies": {
-    "common-log-api": "^0.2.0",
     "umi": "^4.0.41"
   }
 }
