@@ -1,7 +1,4 @@
 const { app, BrowserWindow, ipcMain, nativeTheme, Menu, MenuItem, Notification, globalShortcut, webContents, ipcRenderer } = require('electron');
-// const {GZipKafkaLog}  = require('common-log-api');
-const ClientLogSDK = require('@zixun/client-app-log-sdk').default;
-const axios = require('axios');
 // const Api = require('common-log-api');
 
 // const Log = require('rollup-test');
@@ -11,11 +8,9 @@ const isMac = process.platform === 'darwin'; // 如果是MacOS
 const isWin = process.platform === 'win32'; // 如果是Windows
 const isDev = process.env.NODE_ENV === 'development';
 const getRootPath = require('../../rootPath');
-let windowIdMap = {};
-// import Api from 'common-log-api';
-// import {GZipKafkaLog} from 'common-log-api';
 
-// const Api = require('common-log-api');
+let windowIdMap = {};
+
 /**
  * @description 初始化创建窗口
  * @param name 窗口的名称
@@ -96,6 +91,9 @@ ipcMain.handle('toMain', (callBack) => {
   return '我是main窗口，create window success'
 })
 
+function showText(txt) {
+  return new Buffer(txt, 'ucs2').toString('binary');
+}
 /**
  * @description 当electron初始化完成的时候
 */
@@ -106,49 +104,27 @@ app.whenReady().then(async () => {
   createWindow('default');
 }).then(async () => {
   isMac && showNotification();
-  console.log(ClientLogSDK);
-  const sdk = new ClientLogSDK({
-    appSecuret: 'kDCcxy3BVAeNQP05',
-    appKey: 'appstore',
-    requestUrl: 'https://test-appstore-logs-collect.hubstudio.cn/',
-  })
+}).then(() => {
+  console.log(`debug: ${dllPath}`);
+  try {
 
-
-  const res = await sdk.Log();
-  console.log(res.config);
-  console.log(res.data);
-
-  // console.log(Api);
-  // console.log(CommonApi);
-  /* const res = await Log({
-    requestParams: {
-      appSecuret: 'kDCcxy3BVAeNQP05',
-      appKey: 'appstore',
-      requestUrl: 'http://10.100.73.148:8061/test/processLog'
-    },
-    formParams: {
-      topic: 'ababsbad',
-      content: 'asdaosisuoisuoaiusoiu'
-    }
-  });
-
-  console.log('config', res.config);
-  console.log('data',res.data); */
-/* 
-    const commonRes = await CommonLog({
-        contentss: 'asdsssasds'
+    // 初始化dll
+    const user32 = new ffiNapi.Library(dll32Path, {
+      'MessageBoxW': [
+        'int32', ['int32', 'string', 'string', 'int32']
+      ]
     });
-    console.log('config', commonRes.config);
-    console.log('res.data', commonRes.data);
-   const kafkaRes = await KafkaLog()
-   console.log('config', kafkaRes.config);
-   console.log('data',kafkaRes.data);
-  const gizpkafkaRes = await GZipKafkaLog({
-    topic: 'ababsbad',
-    content: 'asdaosisuoisuoaiusoiu'
+    let isOk = user32.MessageBoxW(0, showText('I am Node.js'), showText('hello world'), 1);
+    console.log('debug', isOk);
+  } catch(err) {
+    console.log('debug', err);
+  }
 
+  /* const frontTool = new ffiNapi.Library(dllPath, {
+    'apexsoft_getsysteminfo': []
   });
-  console.log('headers', gizpkafkaRes.data); */
+  let ispass = frontTool.apexsoft_getsysteminfo();
+  console.log('debug', ispass); */
 })
 /**
  * @description 当没有窗口打开时，则打开一个新窗口（MacOS）

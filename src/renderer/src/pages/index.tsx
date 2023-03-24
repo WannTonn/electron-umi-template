@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 import yayJpg from '../assets/yay.jpg';
-// import { Log } from 'common-log-api';
+// import { Num } from 'example-typescript-package';
 export default function HomePage() {
   useEffect(() => {
     (async () => {
       //  console.log(CommonApi);
-      // console.log(Log);
+      // const number = new Num(1);
 
+      // console.log(number.val());
     })();
   }, []);
   return (
