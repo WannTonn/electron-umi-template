@@ -13,6 +13,7 @@
     "dist/**/*",
     "static/**/*",
     "!src/**/*",
+    "src/main/**/*",
     // "!main/**/*"
   ],
   productName: 'demoApp',
