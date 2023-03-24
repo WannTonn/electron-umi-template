@@ -1,7 +1,4 @@
 const { app, BrowserWindow, ipcMain, nativeTheme, Menu, MenuItem, Notification, globalShortcut, webContents, ipcRenderer } = require('electron');
-// const Api = require('common-log-api');
-
-// const Log = require('rollup-test');
 // const axios = require('axios');
 const path = require('path');
 const isMac = process.platform === 'darwin'; // 如果是MacOS
@@ -91,9 +88,6 @@ ipcMain.handle('toMain', (callBack) => {
   return '我是main窗口，create window success'
 })
 
-function showText(txt) {
-  return new Buffer(txt, 'ucs2').toString('binary');
-}
 /**
  * @description 当electron初始化完成的时候
 */
@@ -104,27 +98,6 @@ app.whenReady().then(async () => {
   createWindow('default');
 }).then(async () => {
   isMac && showNotification();
-}).then(() => {
-  console.log(`debug: ${dllPath}`);
-  try {
-
-    // 初始化dll
-    const user32 = new ffiNapi.Library(dll32Path, {
-      'MessageBoxW': [
-        'int32', ['int32', 'string', 'string', 'int32']
-      ]
-    });
-    let isOk = user32.MessageBoxW(0, showText('I am Node.js'), showText('hello world'), 1);
-    console.log('debug', isOk);
-  } catch(err) {
-    console.log('debug', err);
-  }
-
-  /* const frontTool = new ffiNapi.Library(dllPath, {
-    'apexsoft_getsysteminfo': []
-  });
-  let ispass = frontTool.apexsoft_getsysteminfo();
-  console.log('debug', ispass); */
 })
 /**
  * @description 当没有窗口打开时，则打开一个新窗口（MacOS）
